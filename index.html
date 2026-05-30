@@ -1,645 +1,1326 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Dasar-Dasar Akuakultur | Riset Akademik Lengkap</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Dasar-Dasar Akuakultur | Riset Akademik Lengkap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===================== TEMA CSS VARIABLES ===================== */
+:root {
+  /* Tema Klasik (default) */
+  --bg: #F4F6F9;
+  --bg2: #ebeef3;
+  --card: #ffffff;
+  --text: #1A202C;
+  --text2: #4A5568;
+  --accent: #4A5568;
+  --accent2: #718096;
+  --hero1: #2D3748;
+  --hero2: #1A202C;
+  --border: #CBD5E0;
+  --toc-bg: #ffffff;
+  --toc-link: #2D3748;
+  --info-bg: #EDF2F7;
+  --info-border: #4A5568;
+  --flow-bg: #F7FAFC;
+  --flow-border: #CBD5E0;
+  --formula-bg: #E2E8F0;
+  --term-bg: #F7FAFC;
+  --term-color: #1A202C;
+  --ringkasan-bg: #EDF2F7;
+  --thead: #CBD5E0;
+  --table-border: #CBD5E0;
+  --section-hdr: #EDF2F7;
+  --section-hdr-border: #CBD5E0;
+  --h2-color: #1A202C;
+  --h3-color: #2D3748;
+  --h4-color: #4A5568;
+  --stat-bg: rgba(255,255,255,0.12);
+  --link-color: #2D3748;
+  --shadow: 0 8px 30px rgba(0,0,0,0.08);
+  --shadow-card: 0 4px 20px rgba(0,0,0,0.06);
+  --scrollbar: #CBD5E0;
+  --tag-bg: rgba(255,255,255,0.18);
+  --progress-color: #4A5568;
+  --btn-theme: #2D3748;
+  --btn-theme-text: #fff;
+  --header-sticky: rgba(244,246,249,0.96);
+}
 
-        body {
-            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Roboto', sans-serif;
-            background: linear-gradient(145deg, #eef7ff 0%, #d4eaff 100%);
-            color: #022b3a;
-            line-height: 1.5;
-            scroll-behavior: smooth;
-        }
+[data-theme="hangat"] {
+  --bg: #F7F4EB;
+  --bg2: #ede9dc;
+  --card: #FFF8F0;
+  --text: #3A3025;
+  --text2: #6B5744;
+  --accent: #DD6B20;
+  --accent2: #C05621;
+  --hero1: #7B341E;
+  --hero2: #3A3025;
+  --border: #D6C9B0;
+  --toc-bg: #FFF8F0;
+  --toc-link: #7B341E;
+  --info-bg: #FEF3E2;
+  --info-border: #DD6B20;
+  --flow-bg: #FFFAF0;
+  --flow-border: #F6AD55;
+  --formula-bg: #FEEBC8;
+  --term-bg: #FEF3E2;
+  --term-color: #7B341E;
+  --ringkasan-bg: #FEF3E2;
+  --thead: #FEEBC8;
+  --table-border: #D6C9B0;
+  --section-hdr: #FEF3E2;
+  --section-hdr-border: #F6AD55;
+  --h2-color: #7B341E;
+  --h3-color: #9C4221;
+  --h4-color: #DD6B20;
+  --stat-bg: rgba(255,255,255,0.14);
+  --link-color: #7B341E;
+  --shadow: 0 8px 30px rgba(100,50,0,0.1);
+  --shadow-card: 0 4px 20px rgba(100,50,0,0.07);
+  --scrollbar: #D6C9B0;
+  --tag-bg: rgba(255,255,255,0.2);
+  --progress-color: #DD6B20;
+  --btn-theme: #DD6B20;
+  --btn-theme-text: #fff;
+  --header-sticky: rgba(247,244,235,0.96);
+}
 
-        /* Dekorasi bawah laut */
-        body::before {
-            content: '';
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 120px;
-            background: repeating-linear-gradient(transparent, transparent 38px, rgba(2, 62, 84, 0.08) 38px, rgba(2, 62, 84, 0.12) 45px);
-            pointer-events: none;
-            z-index: 0;
-        }
+[data-theme="gelap"] {
+  --bg: #0F172A;
+  --bg2: #0a1120;
+  --card: #1E293B;
+  --text: #E2E8F0;
+  --text2: #94A3B8;
+  --accent: #38BDF8;
+  --accent2: #0EA5E9;
+  --hero1: #0369A1;
+  --hero2: #0F172A;
+  --border: #334155;
+  --toc-bg: #1E293B;
+  --toc-link: #38BDF8;
+  --info-bg: #1E293B;
+  --info-border: #38BDF8;
+  --flow-bg: #0F172A;
+  --flow-border: #334155;
+  --formula-bg: #0F172A;
+  --term-bg: #1E293B;
+  --term-color: #38BDF8;
+  --ringkasan-bg: #1E293B;
+  --thead: #334155;
+  --table-border: #334155;
+  --section-hdr: #1E293B;
+  --section-hdr-border: #38BDF8;
+  --h2-color: #38BDF8;
+  --h3-color: #7DD3FC;
+  --h4-color: #BAE6FD;
+  --stat-bg: rgba(56,189,248,0.1);
+  --link-color: #38BDF8;
+  --shadow: 0 8px 30px rgba(0,0,0,0.4);
+  --shadow-card: 0 4px 20px rgba(0,0,0,0.3);
+  --scrollbar: #334155;
+  --tag-bg: rgba(56,189,248,0.15);
+  --progress-color: #38BDF8;
+  --btn-theme: #38BDF8;
+  --btn-theme-text: #0F172A;
+  --header-sticky: rgba(15,23,42,0.97);
+}
 
-        /* Container utama */
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem 5rem;
-            position: relative;
-            z-index: 2;
-        }
+/* ===================== LOADING SCREEN ===================== */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #0d3b6e 0%, #003a5e 60%, #00253e 100%);
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  overflow: hidden;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#loading-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
 
-        /* Hero section dengan tema laut */
-        .hero {
-            background: linear-gradient(135deg, #004e7c, #002a47);
-            border-radius: 2.5rem;
-            padding: 3rem 2rem;
-            margin-bottom: 2rem;
-            color: white;
-            box-shadow: 0 25px 40px -15px rgba(0, 40, 60, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
+/* Gelombang bawah loading */
+.wave-loading {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 80px;
+}
+.wave-loading svg {
+  width: 100%;
+  height: 100%;
+}
 
-        .hero::after {
-            content: "🐟 🐠 🦐 🐙 🐡";
-            font-size: 8rem;
-            position: absolute;
-            bottom: -20px;
-            right: -20px;
-            opacity: 0.08;
-            pointer-events: none;
-            white-space: pre;
-        }
+/* Scene animasi bebek & ikan */
+.scene {
+  position: relative;
+  width: 340px;
+  height: 160px;
+  margin-bottom: 1.5rem;
+  overflow: visible;
+}
 
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.75rem;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
+/* Air */
+.water-surface {
+  position: absolute;
+  bottom: 30px;
+  left: 0; right: 0;
+  height: 50px;
+  background: linear-gradient(180deg, rgba(56,189,248,0.35) 0%, rgba(14,116,187,0.5) 100%);
+  border-radius: 50% 50% 0 0 / 20px 20px 0 0;
+  animation: waterWave 2s ease-in-out infinite alternate;
+}
+@keyframes waterWave {
+  from { transform: scaleY(1); }
+  to { transform: scaleY(1.08); }
+}
 
-        .hero .subtitle {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
+/* Bebek */
+.duck {
+  position: absolute;
+  bottom: 72px;
+  left: 0;
+  font-size: 2.6rem;
+  animation: duckChase 3s linear infinite;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+  transform-origin: center bottom;
+}
+@keyframes duckChase {
+  0%   { left: -60px; transform: scaleX(1); }
+  45%  { left: 270px; transform: scaleX(1); }
+  50%  { left: 270px; transform: scaleX(-1); }
+  95%  { left: -60px; transform: scaleX(-1); }
+  100% { left: -60px; transform: scaleX(1); }
+}
+/* Bebek bobbing */
+.duck { animation: duckChase 3s linear infinite, duckBob 0.4s ease-in-out infinite alternate; }
+@keyframes duckBob {
+  from { bottom: 72px; }
+  to { bottom: 78px; }
+}
 
-        .hero .tagline {
-            font-size: 1rem;
-            background: rgba(255,255,255,0.15);
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            border-radius: 40px;
-            backdrop-filter: blur(4px);
-        }
+/* Ikan */
+.fish {
+  position: absolute;
+  bottom: 40px;
+  font-size: 1.8rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+.fish1 { animation: fishSwim1 3s linear infinite; }
+.fish2 { animation: fishSwim2 3s linear infinite 0.6s; font-size: 1.4rem; bottom: 50px; }
+@keyframes fishSwim1 {
+  0%   { left: 320px; transform: scaleX(1); }
+  45%  { left: -50px; transform: scaleX(1); }
+  50%  { left: -50px; transform: scaleX(-1); }
+  95%  { left: 320px; transform: scaleX(-1); }
+  100% { left: 320px; transform: scaleX(1); }
+}
+@keyframes fishSwim2 {
+  0%   { left: 280px; transform: scaleX(1); }
+  45%  { left: -40px; transform: scaleX(1); }
+  50%  { left: -40px; transform: scaleX(-1); }
+  95%  { left: 280px; transform: scaleX(-1); }
+  100% { left: 280px; transform: scaleX(1); }
+}
 
-        /* Animated counter sederhana (simulasi count-up via CSS + JS minimal) */
-        .stats-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-top: 2rem;
-            justify-content: space-between;
-        }
+/* Bintang laut & gelembung */
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  animation: bubbleUp var(--dur) ease-in infinite var(--delay);
+  bottom: 30px;
+}
+@keyframes bubbleUp {
+  from { transform: translateY(0); opacity: 0.7; }
+  to { transform: translateY(-90px); opacity: 0; }
+}
 
-        .stat-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(8px);
-            border-radius: 1.5rem;
-            padding: 1rem 1.5rem;
-            flex: 1;
-            min-width: 140px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
+.loading-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.loading-sub {
+  font-size: 0.95rem;
+  opacity: 0.75;
+  margin-bottom: 2rem;
+}
+.loading-bar-wrap {
+  width: 220px;
+  height: 6px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.loading-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #38BDF8, #7DD3FC);
+  border-radius: 99px;
+  animation: loadBar 2.2s ease-out forwards;
+}
+@keyframes loadBar {
+  0% { width: 0%; }
+  80% { width: 90%; }
+  100% { width: 100%; }
+}
 
-        .stat-number {
-            font-size: 2.2rem;
-            font-weight: 800;
-            display: block;
-            line-height: 1.2;
-        }
+/* ===================== BASE STYLES ===================== */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-        .stat-label {
-            font-size: 0.85rem;
-            opacity: 0.85;
-        }
+html { scroll-behavior: smooth; }
 
-        /* Daftar isi */
-        .toc {
-            background: white;
-            border-radius: 2rem;
-            padding: 1.8rem 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 25px -12px rgba(0,0,0,0.15);
-            border: 1px solid rgba(0,100,120,0.2);
-        }
+body {
+  font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  transition: background 0.4s, color 0.4s;
+  min-height: 100vh;
+}
 
-        .toc h2 {
-            font-size: 1.5rem;
-            color: #004e7c;
-            border-left: 6px solid #0088aa;
-            padding-left: 1rem;
-            margin-bottom: 1rem;
-        }
+/* Scrollbar */
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar); border-radius: 99px; }
 
-        .toc-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 0.8rem;
-        }
+/* ===================== STICKY HEADER & THEME ===================== */
+.sticky-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--header-sticky);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1.2rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  transition: background 0.4s;
+}
+.sticky-bar .site-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.progress-bar {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--progress-color);
+  transition: width 0.1s linear;
+}
+.theme-switcher {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.theme-btn {
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 0.28rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  transition: 0.2s;
+  line-height: 1.4;
+}
+.theme-btn.klasik { background:#4A5568; color:#fff; }
+.theme-btn.hangat { background:#DD6B20; color:#fff; }
+.theme-btn.gelap  { background:#38BDF8; color:#0F172A; }
+.theme-btn:hover { opacity: 0.85; transform: scale(1.05); }
+.theme-btn.active { outline: 2px solid white; outline-offset: 2px; box-shadow: 0 0 0 4px rgba(0,0,0,0.15); }
 
-        .toc a {
-            text-decoration: none;
-            color: #035c7c;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.4rem 0;
-            border-bottom: 1px dashed #cce7f0;
-            transition: 0.2s;
-        }
+/* Back-to-top */
+#back-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 200;
+  width: 44px; height: 44px;
+  background: var(--accent);
+  color: var(--btn-theme-text);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.3s;
+}
+#back-top.show { opacity: 1; transform: translateY(0); }
 
-        .toc a:hover {
-            color: #0077be;
-            transform: translateX(5px);
-        }
+/* ===================== LAYOUT ===================== */
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 1.6rem 1.2rem 5rem;
+}
 
-        /* Bagian materi */
-        .section {
-            background: white;
-            border-radius: 2rem;
-            margin-bottom: 2.2rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            transition: 0.2s;
-            border: 1px solid #e2f0f5;
-        }
+/* ===================== HERO ===================== */
+.hero {
+  background: linear-gradient(135deg, var(--hero1), var(--hero2));
+  border-radius: 2rem;
+  padding: 3rem 2rem 2.5rem;
+  margin-bottom: 2rem;
+  color: white;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+  pointer-events: none;
+}
+.hero::after {
+  content: "🐟 🐠 🦐 🐙 🐡";
+  font-size: 7rem;
+  position: absolute;
+  bottom: -18px; right: -12px;
+  opacity: 0.07;
+  pointer-events: none;
+  white-space: pre;
+}
 
-        .section-header {
-            background: #f0fafd;
-            padding: 1.2rem 2rem;
-            border-bottom: 2px solid #c3e2ef;
-        }
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.25);
+}
+.hero .subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+.hero .tagline {
+  font-size: 0.9rem;
+  background: var(--tag-bg);
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  border-radius: 40px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.15);
+}
 
-        .section-header h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #003f5c;
-        }
+/* Stats */
+.stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.8rem;
+}
+.stat-card {
+  background: var(--stat-bg);
+  backdrop-filter: blur(8px);
+  border-radius: 1.2rem;
+  padding: 0.9rem 1.2rem;
+  flex: 1;
+  min-width: 130px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: background 0.4s;
+}
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 800;
+  display: block;
+  line-height: 1.2;
+}
+.stat-label {
+  font-size: 0.8rem;
+  opacity: 0.85;
+  line-height: 1.4;
+}
 
-        .section-header p {
-            color: #2c6979;
-            margin-top: 0.2rem;
-        }
+/* ===================== TOC ===================== */
+.toc {
+  background: var(--toc-bg);
+  border-radius: 1.8rem;
+  padding: 1.6rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border);
+  transition: background 0.4s, border-color 0.4s;
+}
+.toc h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--h2-color);
+  border-left: 5px solid var(--accent);
+  padding-left: 0.9rem;
+  margin-bottom: 1rem;
+}
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.5rem;
+}
+.toc a {
+  text-decoration: none;
+  color: var(--toc-link);
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.6rem;
+  transition: 0.2s;
+  border: 1px solid transparent;
+}
+.toc a:hover {
+  background: var(--info-bg);
+  border-color: var(--border);
+  transform: translateX(4px);
+}
 
-        .section-content {
-            padding: 1.8rem 2rem;
-        }
+/* ===================== SECTION CARDS ===================== */
+.section {
+  background: var(--card);
+  border-radius: 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
+}
+.section:hover {
+  box-shadow: var(--shadow);
+}
 
-        /* Card info, flow, diagram */
-        .info-card {
-            background: #eef7fc;
-            border-left: 5px solid #0088aa;
-            padding: 1rem 1.4rem;
-            border-radius: 1.2rem;
-            margin: 1rem 0;
-        }
+.section-header {
+  background: var(--section-hdr);
+  padding: 1.2rem 1.8rem;
+  border-bottom: 2px solid var(--section-hdr-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  transition: background 0.4s, border-color 0.4s;
+}
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--h2-color);
+  line-height: 1.3;
+}
+.section-header p {
+  color: var(--text2);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
 
-        .flow-diagram {
-            background: #fef9e6;
-            padding: 1.2rem;
-            border-radius: 1.2rem;
-            font-family: monospace;
-            font-weight: bold;
-            text-align: center;
-            margin: 1rem 0;
-            border: 1px solid #ffdd99;
-        }
+.section-content {
+  padding: 1.6rem 1.8rem;
+}
+.section-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--h3-color);
+  margin: 1.4rem 0 0.6rem;
+  font-weight: 700;
+}
+.section-content h3:first-child { margin-top: 0; }
+.section-content h4 {
+  font-size: 1rem;
+  color: var(--h4-color);
+  margin: 1.2rem 0 0.4rem;
+  font-weight: 700;
+}
+.section-content p {
+  color: var(--text2);
+  margin-bottom: 0.6rem;
+  line-height: 1.75;
+}
+.section-content ul {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0 1rem;
+}
+.section-content li {
+  margin-bottom: 0.55rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.section-content li strong { color: var(--text); }
 
-        .formula-box {
-            background: #e0f0f5;
-            padding: 1rem;
-            border-radius: 1rem;
-            font-family: 'Courier New', monospace;
-            font-weight: 600;
-            text-align: center;
-            margin: 1rem 0;
-        }
+/* ===================== INFO CARDS ===================== */
+.info-card {
+  background: var(--info-bg);
+  border-left: 4px solid var(--info-border);
+  padding: 1rem 1.3rem;
+  border-radius: 1rem;
+  margin: 0.9rem 0;
+  color: var(--text2);
+  line-height: 1.7;
+  transition: background 0.4s, border-color 0.4s;
+}
+.info-card strong { color: var(--text); }
 
-        .variable-list {
-            background: #f9f2e0;
-            padding: 0.8rem 1.2rem;
-            border-radius: 1rem;
-            font-size: 0.9rem;
-        }
+/* ===================== FLOW DIAGRAM ===================== */
+.flow-diagram {
+  background: var(--flow-bg);
+  border: 1px solid var(--flow-border);
+  padding: 1.1rem 1.3rem;
+  border-radius: 1rem;
+  font-family: 'Nunito', monospace;
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin: 0.9rem 0;
+  color: var(--text);
+  line-height: 1.9;
+  transition: background 0.4s, border-color 0.4s;
+}
 
-        .scientific-term {
-            background: #fff0db;
-            border-radius: 0.8rem;
-            padding: 0.6rem 1rem;
-            margin: 0.8rem 0;
-            display: flex;
-            align-items: baseline;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-        }
+/* ===================== FORMULA BOX ===================== */
+.formula-box {
+  background: var(--formula-bg);
+  padding: 0.9rem 1.1rem;
+  border-radius: 0.9rem;
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 0.8rem 0;
+  color: var(--text);
+  border: 1px solid var(--border);
+  transition: background 0.4s, border-color 0.4s;
+}
 
-        .term {
-            font-weight: 800;
-            color: #004e7c;
-        }
+/* ===================== VARIABLE LIST ===================== */
+.variable-list {
+  background: var(--term-bg);
+  padding: 0.7rem 1rem;
+  border-radius: 0.9rem;
+  font-size: 0.88rem;
+  color: var(--text2);
+  transition: background 0.4s;
+}
 
-        .explain {
-            font-style: italic;
-            color: #2c5a6e;
-        }
+/* ===================== SCIENTIFIC TERM ===================== */
+.scientific-term {
+  background: var(--term-bg);
+  border-radius: 0.9rem;
+  padding: 0.7rem 1rem;
+  margin: 0.7rem 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  transition: background 0.4s;
+}
+.term { font-weight: 800; color: var(--term-color); }
+.explain { font-style: italic; color: var(--text2); font-size: 0.9rem; }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            font-size: 0.9rem;
-        }
+/* ===================== TABLES ===================== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.9rem 0;
+  font-size: 0.875rem;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+th, td {
+  border: 1px solid var(--table-border);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  color: var(--text2);
+  transition: border-color 0.4s;
+}
+th {
+  background: var(--thead);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  transition: background 0.4s;
+}
+tr:hover td { background: var(--info-bg); transition: background 0.15s; }
 
-        th, td {
-            border: 1px solid #cbdbe2;
-            padding: 8px 10px;
-            text-align: left;
-            vertical-align: top;
-        }
+/* ===================== RINGKASAN ===================== */
+.ringkasan {
+  background: var(--ringkasan-bg);
+  border-radius: 1rem;
+  padding: 1rem 1.4rem;
+  margin: 0.9rem 0;
+  color: var(--text2);
+  font-size: 0.93rem;
+  border-left: 4px solid var(--accent);
+  transition: background 0.4s;
+}
+.ringkasan strong { color: var(--text); }
 
-        th {
-            background: #d9eef5;
-        }
+/* ===================== AWAM HELPER (tambahan penjelasan) ===================== */
+.awam-note {
+  background: linear-gradient(135deg, var(--info-bg), var(--bg));
+  border: 1px dashed var(--accent);
+  border-radius: 1rem;
+  padding: 0.8rem 1.2rem;
+  margin: 0.7rem 0;
+  font-size: 0.88rem;
+  color: var(--text2);
+  transition: background 0.4s;
+}
+.awam-note::before {
+  content: "💡 Penjelasan Mudah: ";
+  font-weight: 700;
+  color: var(--accent);
+}
 
-        .ringkasan {
-            background: #e2f0e8;
-            border-radius: 1rem;
-            padding: 1rem 1.5rem;
-            margin: 1rem 0;
-        }
+/* ===================== BADGE ===================== */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--accent);
+  color: var(--btn-theme-text);
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
 
-        .btn-lanjut {
-            display: inline-block;
-            background: #0088aa;
-            color: white;
-            padding: 0.5rem 1.2rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-        }
+/* ===================== FOOTER ===================== */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--text2);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+  margin-top: 1rem;
+}
 
-        footer {
-            text-align: center;
-            margin-top: 2rem;
-            color: #3e7b91;
-        }
-    </style>
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 600px) {
+  .container { padding: 1rem 0.8rem 4rem; }
+  .hero { padding: 2rem 1.2rem; border-radius: 1.4rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .section-header { padding: 1rem 1.2rem; }
+  .section-header h2 { font-size: 1.25rem; }
+  .section-content { padding: 1.2rem; }
+  .stats-grid { gap: 0.6rem; }
+  .stat-card { min-width: 100px; padding: 0.7rem; }
+  .stat-number { font-size: 1.6rem; }
+  .toc { padding: 1.2rem; border-radius: 1.2rem; }
+  .toc-grid { grid-template-columns: 1fr 1fr; }
+  .theme-btn { font-size: 0.7rem; padding: 0.22rem 0.55rem; }
+  table { font-size: 0.8rem; }
+  th, td { padding: 7px 8px; }
+}
+</style>
 </head>
 <body>
-<div class="container">
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>🌊 Dasar-Dasar Akuakultur</h1>
-        <div class="subtitle">Riset Akademik Lengkap • Untuk Jihan</div>
-        <div class="tagline">🐟 Dari prinsip ilmiah hingga teknologi RAS & Bioflok</div>
-        <div class="stats-grid" id="stats-animation">
-            <div class="stat-card"><span class="stat-number" data-target="57">0</span><span class="stat-label">% konsumsi ikan global dari akuakultur (2022)</span></div>
-            <div class="stat-card"><span class="stat-number" data-target="281">0</span><span class="stat-label">Miliar USD nilai produksi global</span></div>
-            <div class="stat-card"><span class="stat-number" data-target="2">0</span><span class="stat-label">Produsen terbesar dunia (Indonesia)</span></div>
-            <div class="stat-card"><span class="stat-number" data-target="600">0</span><span class="stat-label">+ Spesies dibudidayakan</span></div>
-        </div>
-    </div>
 
-    <!-- Daftar Isi -->
-    <div class="toc">
-        <h2>📑 Daftar Isi</h2>
-        <div class="toc-grid">
-            <a href="#bab1">📘 1. Definisi Akuakultur</a>
-            <a href="#bab2">📜 2. Sejarah Perkembangan</a>
-            <a href="#bab3">⚙️ 3. Prinsip Dasar Budidaya</a>
-            <a href="#bab4">🏞️ 4. Sistem Budidaya (Tradisional s/d Supra Intensif)</a>
-            <a href="#bab5">🔄 5. Teknologi RAS</a>
-            <a href="#bab6">🧫 6. Teknologi Bioflok</a>
-            <a href="#bab7">💧 7. Manajemen Air & Limbah</a>
-            <a href="#bab8">📊 8. Efisiensi & Teknologi Modern</a>
-            <a href="#bab9">⚠️ 9. Tantangan & Solusi</a>
-        </div>
-    </div>
+<!-- ===================== LOADING SCREEN ===================== -->
+<div id="loading-screen">
+  <div class="scene">
+    <!-- Bebek ngejar ikan -->
+    <div class="duck" title="Bebek lagi semangat!">🦆</div>
+    <div class="fish fish1">🐟</div>
+    <div class="fish fish2">🐠</div>
+    <!-- Gelembung -->
+    <div class="bubble" style="--dur:1.5s;--delay:0s; width:7px;height:7px; left:60px;"></div>
+    <div class="bubble" style="--dur:2s;--delay:0.4s; width:5px;height:5px; left:130px;"></div>
+    <div class="bubble" style="--dur:1.8s;--delay:0.8s; width:9px;height:9px; left:200px;"></div>
+    <div class="bubble" style="--dur:1.4s;--delay:0.2s; width:6px;height:6px; left:270px;"></div>
+    <div class="water-surface"></div>
+  </div>
+  <div class="loading-title">🌊 Dasar-Dasar Akuakultur</div>
+  <div class="loading-sub">Memuat materi akademik lengkap untuk Jihan…</div>
+  <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
 
-    <!-- AWAL MATERI: BAB 1 -->
-    <div id="bab1" class="section">
-        <div class="section-header">
-            <h2>BAB 1: DEFINISI AKUAKULTUR</h2>
-            <p>Memahami apa itu akuakultur secara ilmiah & perbedaannya dengan perikanan tangkap</p>
-        </div>
-        <div class="section-content">
-            <h3>1.1 Definisi Komprehensif</h3>
-            <div class="info-card">
-                <strong>📘 Definisi Utama (FAO, 2022):</strong><br>
-                Akuakultur (<em>aquaculture</em>) adalah pemeliharaan organisme akuatik — termasuk ikan, moluska, krustasea, tumbuhan air, dan alga — dalam lingkungan yang dikontrol, baik air tawar, air payau, maupun air laut, dengan tujuan menghasilkan produk untuk konsumsi manusia, perdagangan, restocking alam, atau tujuan ilmiah.
-            </div>
-            <div class="info-card">
-                <strong>🔬 Definisi Teknis:</strong><br>
-                Akuakultur merupakan aplikasi prinsip-prinsip ilmu hayati, teknik, dan manajemen dalam sistem produksi biologis berbasis air, yang melibatkan intervensi manusia aktif dalam siklus hidup organisme target untuk meningkatkan produktivitas melampaui kapasitas alami ekosistem.
-            </div>
-
-            <div class="scientific-term">
-                <span class="term">Istilah Ilmiah →</span>
-                <span class="explain"><strong>Mariculture</strong> = budidaya di laut | <strong>Inland aquaculture</strong> = budidaya di perairan darat | <strong>Polyculture</strong> = memelihara beberapa spesies dalam satu lahan | <strong>Monoculture</strong> = satu spesies dominan</span>
-            </div>
-
-            <h4>📌 Perbedaan Akuakultur vs Penangkapan</h4>
-            <div class="flow-diagram" style="text-align:left">
-                <strong>Penangkapan Ikan</strong> → Ekstraktif, Alam bebas, Bergantung stok alam → Hasil fluktuatif<br>
-                <strong>Akuakultur</strong> → Produktif, Lingkungan terkontrol, Mandiri dari alam → Hasil dapat diprediksi
-            </div>
-
-            <div class="ringkasan">
-                <strong>✨ Inti Materi:</strong> Akuakultur bukan sekadar "memelihara ikan" — ini adalah ilmu multidisiplin yang memadukan biologi, kimia, teknik, ekonomi dan manajemen lingkungan. Produktivitas per hektar bisa 10–50× lebih tinggi dari perikanan tangkap.
-            </div>
-
-            <h4>📊 Fakta Penting</h4>
-            <ul>
-                <li>Akuakultur menyumbang <strong>57%</strong> dari total konsumsi ikan global pada 2022 (FAO, 2022).</li>
-                <li>Nilai produksi akuakultur global mencapai <strong>USD 281,5 miliar</strong> (2020).</li>
-                <li>Indonesia adalah produsen akuakultur terbesar ke-<strong>2</strong> di dunia setelah Tiongkok.</li>
-                <li>Lebih dari <strong>600 spesies</strong> dibudidayakan secara komersial di seluruh dunia.</li>
-            </ul>
-
-            <h4>📚 Sumber Referensi – Definisi</h4>
-            <tr>
-                <tr><th>Kategori</th><th>Sumber</th></tr>
-                <tr><td>FAO</td><td>FAO. (2022). <em>The State of World Fisheries and Aquaculture (SOFIA)</em></td></tr>
-                <tr><td>Jurnal</td><td>Beveridge, M.C.M., et al. (2013). <em>Journal of Fish Biology</em>, 83(4), 1067–1084</td></tr>
-                <tr><td>Buku</td><td>Stickney, R.R. (2000). <em>Encyclopedia of Aquaculture</em>. John Wiley & Sons</td></tr>
-                <tr><td>Kementerian</td><td>KKP. (2023). <em>Laporan Kinerja Ditjen Perikanan Budidaya</em></td></tr>
-            </table>
-            <div class="ringkasan">
-                ✅ <strong>Apa yang Perlu Dipahami:</strong> Akuakultur adalah sistem produksi terkontrol yang mendominasi pasokan ikan dunia, dengan kontribusi lebih dari separuh konsumsi ikan global.
-            </div>
-        </div>
-    </div>
-
-    <!-- BAB 2 : SEJARAH -->
-    <div id="bab2" class="section">
-        <div class="section-header">
-            <h2>BAB 2: SEJARAH PERKEMBANGAN AKUAKULTUR</h2>
-            <p>Perjalanan panjang dari Tiongkok kuno hingga era digital</p>
-        </div>
-        <div class="section-content">
-            <h3>2.1 Linimasa Historis Global</h3>
-            <div class="info-card">
-                <strong>📅 ± 3500 SM — Tiongkok Kuno:</strong> Pemeliharaan ikan mas (<em>Cyprinus carpio</em>) di tambak lumpur. Risalah tertua: Fan Li's Fish Culture Classic (460 SM).<br>
-                <strong>🏺 ± 2000 SM — Mesir Kuno:</strong> Relief dinding makam menggambarkan kolam tilapia (<em>Oreochromis niloticus</em>) sebagai sumber protein pekerja piramida.<br>
-                <strong>⛪ Abad ke-13 — Eropa Medieval:</strong> Biara membangun vivarium (kolam ikan) untuk stok saat masa puasa.<br>
-                <strong>🇯🇵 Abad ke-17 — Jepang:</strong> Budidaya kerang mutiara (<em>Pinctada fucata</em>) tradisional.<br>
-                <strong>⚙️ Abad ke-19 — Revolusi Industri:</strong> 1853 riset pembenihan trout di Prancis; 1874 US Fish Commission lembaga akuakultur pertama.<br>
-                <strong>📡 Abad ke-20 — Era Modern:</strong> 1960-an intensifikasi, 1970-an pakan pellet, 1980-an udang intensif Asia, 1990-an krisis WSSV mendorong biosekuriti, 2000-an smart aquaculture.
-            </div>
-            <h4>🌏 2.2 Sejarah Akuakultur di Indonesia</h4>
-            <ul>
-                <li><strong>Kerajaan (Abad 8–16):</strong> Sistem tambak (<em>empang</em>) untuk bandeng di Jawa Tengah.</li>
-                <li><strong>Kolonial Belanda:</strong> VOC mencatat silvofishery; 1920 Balai Perikanan Darat Bogor; teknik mina padi.</li>
-                <li><strong>Kemerdekaan (1945–1980):</strong> Pembentukan Jawatan Perikanan Darat, PELITA I, ekspansi tambak udang.</li>
-                <li><strong>Intensifikasi (1980–2000):</strong> Ekspor udang beku; wabah WSSV 1994 → peralihan ke udang vaname.</li>
-                <li><strong>Modern (2000–sekarang):</strong> KKP berdiri 2001, program GEMARIKAN, produksi 17,2 juta ton (2023).</li>
-            </ul>
-            <div class="ringkasan">
-                <strong>📌 Inti Sejarah:</strong> Akuakultur berusia >3500 tahun. Indonesia memiliki warisan kaya silvofishery, dan setiap krisis penyakit melahirkan inovasi teknologi baru (contoh: WSSV memicu adopsi udang vaname & biosekuriti).
-            </div>
-            <h4>📖 Sumber Referensi – Sejarah</h4>
-            <table><tr><th>Kategori</th><th>Sumber</th></tr><tr><td>FAO</td><td>FAO. (2014). <em>Aquaculture: Global status and trends</em></td></tr><tr><td>Buku</td><td>Pillay, T.V.R. & Kutty, M.N. (2005). <em>Aquaculture: Principles and Practices</em></td></tr><tr><td>Kementerian</td><td>KKP. (2022). <em>Sejarah Perikanan Budidaya Indonesia</em></td></tr></table>
-        </div>
-    </div>
-
-    <!-- BAB 3 : PRINSIP DASAR BUDIDAYA -->
-    <div id="bab3" class="section">
-        <div class="section-header">
-            <h2>BAB 3: PRINSIP DASAR BUDIDAYA</h2>
-            <p>Lima pilar utama keberhasilan akuakultur</p>
-        </div>
-        <div class="section-content">
-            <h3>3.1 Lima Prinsip Fundamental</h3>
-            <div class="info-card"><strong>Prinsip 1 — Carrying Capacity (Daya Dukung)</strong><br>Kemampuan maksimum suatu sistem perairan mendukung biomassa tanpa degradasi permanen.<br>
-            <div class="formula-box">
-                CC = (DO_supply - DO_minimum) / (BO_ikan × N)<br>
-                <span style="font-size:0.8rem;">DO_supply = pasokan oksigen terlarut | DO_minimum = kebutuhan minimum ikan | BO_ikan = kebutuhan oksigen spesifik ikan | N = jumlah individu</span>
-            </div>
-            Contoh: Ikan lele kolam konvensional 20–50 kg/m³; udang vaname tambak intensif 200–400 ekor/m².
-            </div>
-            <div class="info-card"><strong>Prinsip 2 — Siklus Biogeokimia (Siklus Nitrogen)</strong>
-            <div class="flow-diagram">Pakan Protein → Amonia (NH₃ TOKSIK) → Bakteri Nitrosomonas → Nitrit (NO₂⁻ SANGAT TOKSIK) → Bakteri Nitrobacter → Nitrat (NO₃⁻ relatif aman) → Denitrifikasi → Gas N₂ keluar atmosfer</div>
-            <em>Penjelasan sederhana:</em> Sisa pakan & kotoran menghasilkan racun amonia. Bakteri baik mengubahnya menjadi nitrat yang tidak beracun, lalu menjadi gas nitrogen yang aman.
-            </div>
-            <div class="info-card"><strong>Prinsip 3 — Homeostasis Kualitas Air</strong><br> Parameter kritis:
-            <table><tr><th>Parameter</th><th>Optimal</th><th>Kritis</th></tr>
-            <tr><td>Suhu</td><td>26–30°C</td><td>&lt;15 atau &gt;35</td></tr>
-            <tr><td>DO (Oksigen)</td><td>&gt;5 mg/L</td><td>&lt;3 mg/L</td></tr>
-            <tr><td>Amonia Total</td><td>&lt;1 mg/L</td><td>&gt;3 mg/L</td></tr>
-            <tr><td>Nitrit</td><td>&lt;0,1 mg/L</td><td>&gt;0,5 mg/L</td></tr></table>
-            </div>
-            <div class="info-card"><strong>Prinsip 4 — Manajemen Pakan (FCR)</strong><br>
-            <div class="formula-box">FCR = Total Pakan Diberikan (kg) / Total Pertambahan Biomassa (kg)</div>
-            FCR ideal: Lele 0,8–1,2; Nila 1,5–2,0; Udang vaname 1,2–1,6. Semakin kecil FCR semakin efisien.
-            </div>
-            <div class="info-card"><strong>Prinsip 5 — Biosekuriti & Kesehatan:</strong> Level 1 Eksklusi (cegah masuk patogen), Level 2 Kompartementalisasi (cegah penyebaran), Level 3 Eliminasi (eradikasi patogen).</div>
-            <div class="ringkasan"><strong>Kesimpulan Singkat:</strong> Lima prinsip ini — daya dukung, siklus nitrogen, kualitas air, efisiensi pakan, dan biosekuriti — menjadi fondasi teknis budidaya berkelanjutan.</div>
-            <h4>📚 Sumber Referensi – Prinsip Dasar</h4>
-            <table><tr><td>FAO (2010)</td><td>Good aquaculture practices</td></tr><tr><td>Boyd & Tucker (2012)</td><td>Aquaculture, 370–371</td></tr></table>
-        </div>
-    </div>
-
-    <!-- BAB 4 : SISTEM BUDIDAYA (awal) -->
-    <div id="bab4" class="section">
-        <div class="section-header">
-            <h2>BAB 4: SISTEM BUDIDAYA — DARI TRADISIONAL KE SUPRA INTENSIF</h2>
-        </div>
-        <div class="section-content">
-            <h3>4.1 Sistem Tradisional (Ekstensif)</h3>
-            <p>Padat tebar 1–5 ekor/m², produksi 500–2.000 kg/ha/tahun, mengandalkan pakan alami, tanpa aerasi. Contoh di Indonesia: Empang bandeng, mina padi, silvofishery. Keunggulan: ramah lingkungan, cocok pemberdayaan masyarakat. Keterbatasan: produktivitas rendah.</p>
-            <h3>4.2 Sistem Semi-Intensif</h3>
-            <p>Padat tebar 5–25 ekor/m², aerasi kincir air (1–2 HP/ha), FCR 1,5–3,0. Menggunakan 50% pakan alami + buatan. Contoh tambak udang vaname semi-intensif di Jawa Timur.</p>
-            <div class="info-card"><strong>Perbandingan Ekstensif vs Semi-Intensif</strong><br> Pakan: 100% alami → 50% alami+buatan. Aerasi: tidak ada → kincir air. Monitoring: jarang → mingguan.</div>
-            <h3>4.3 Sistem Intensif</h3>
-            <p>Padat tebar 25–100 ekor/m² (ikan), 100–300 ekor/m² (udang), FCR 1,0–2,0, aerasi 10-20 HP/ha, pergantian air 30–100%/hari. Contoh tambak udang vaname intensif PTDI (Probolinggo) dan KJA kerapu di Lampung.</p>
-            <h3>4.4 Sistem Supra-Intensif</h3>
-            <p>Kepadatan ekstrem, teknologi RAS atau bioflok. Padat tebar >300 ekor/m² udang, >100 kg/m³ ikan dalam RAS, FCR 0,8-1,5, pergantian air <10% per hari. Contoh: Udang vaname 600–1000 ekor/m², lele RAS 100–200 kg/m³.</p>
-            <div class="ringkasan"><strong>Inti Materi:</strong> Sistem tradisional minim input, semi-intensif transisi, intensif padat modal, supra-intensif butuh teknologi canggih (RAS/bioflok) untuk produktivitas ekstrim.</div>
-            <h4>📚 Sumber Referensi – Sistem Budidaya</h4>
-            <p>FAO (2015), Wasielesky et al. (2006), Tidwell (2012), KKP (2021).</p>
-        </div>
-    </div>
-
-    <!-- BAB 5 : RAS -->
-    <div id="bab5" class="section">
-        <div class="section-header">
-            <h2>BAB 5: TEKNOLOGI RAS (RECIRCULATING AQUACULTURE SYSTEM)</h2>
-        </div>
-        <div class="section-content">
-            <h3>5.1 Definisi & Konsep Dasar RAS</h3>
-            <p>Sistem budidaya tertutup yang mendaur ulang air 95–99% dengan filter mekanik, biofilter, aerasi, desinfeksi.</p>
-            <div class="flow-diagram">
-                Kolam Ikan → Drum Filter (padatan) → Biofilter MBBR (ubah amonia → nitrat) → Degasser (buang CO₂) → UV/Ozon → Oksigenasi → Kembali ke kolam
-            </div>
-            <h3>5.2 Komponen Teknis RAS</h3>
-            <ul><li><strong>MBBR (Moving Bed Biofilm Reactor):</strong> Media plastik dengan bakteri Nitrosomonas & Nitrobacter yang mengoksidasi amonia menjadi nitrat. Kapasitas 0,5–1,5 g NH₃-N/m²/hari.</li>
-            <li><strong>Drum Filter:</strong> menyaring padatan 60–200 mikron.</li>
-            <li><strong>UV Sterilizer:</strong> dosis 25–40 mJ/cm² merusak DNA patogen.</li>
-            <li><strong>Ozonasi:</strong> 0,01–0,1 mg/L membunuh patogen & menghilangkan warna.</li></ul>
-            <div class="info-card"><strong>✅ Keunggulan RAS:</strong> Hemat air 95–99%, kontrol penuh lingkungan, bisa di mana saja.<br>
-            <strong>⚠️ Keterbatasan:</strong> Investasi sangat tinggi, risiko mati listrik fatal, butuh operator ahli. Contoh global: Atlantic Sapphire (220.000 ton/tahun). Contoh Indonesia: BRPBAT Bogor, PT Biru Laut Nusantara.</div>
-            <h4>📚 Sumber Referensi RAS</h4>
-            <p>Martins et al. (2010), Timmons & Ebeling (2013), KKP-BRIN (2022).</p>
-        </div>
-    </div>
-
-    <!-- BAB 6 : BIOFLOK -->
-    <div id="bab6" class="section">
-        <div class="section-header">
-            <h2>BAB 6: TEKNOLOGI BIOFLOK</h2>
-            <p>Sistem hemat air & pakan dengan bantuan mikroba</p>
-        </div>
-        <div class="section-content">
-            <h3>6.1 Konsep & Sejarah Bioflok</h3>
-            <div class="info-card">Bioflok adalah agregat mikroskopis (0,1–1 mm) dari bakteri heterotrof, alga, protozoa, partikel organik — berfungsi sebagai pakan in situ dan filter biologis. Dikembangkan oleh Prof. Yoram Avnimelech (Israel) sejak 1970-an, diadopsi massal untuk budidaya udang vaname.</div>
-            <h3>6.2 Mekanisme Pembentukan Bioflok</h3>
-            <p>Syarat: aerasi kuat (>15 cm/detik), rasio C:N = 15:1 – 20:1 (tambahkan molase/tapioka), alkalinitas >100 mg/L.</p>
-            <div class="flow-diagram">
-                Amonia + Sumber Karbon (molase) → Bakteri heterotrof asimilasi nitrogen → Sekresi EPS (lem alami) → Bioflok terbentuk → Dimakan udang/ikan sebagai sumber protein 25–40%
-            </div>
-            <div class="formula-box">NH₄⁺ + 1,18C₆H₁₂O₆ + HCO₃⁻ + 2,06O₂ → Biomassa bakteri + H₂O + CO₂</div>
-            <h3>6.3 Komposisi Nutrisi Bioflok</h3>
-            <table><tr><th>Komponen</th><th>% bobot kering</th></tr><tr><td>Protein kasar</td><td>25–40%</td></tr><tr><td>Lemak kasar</td><td>0,5–3,5%</td></tr><tr><td>Karbohidrat</td><td>15–30%</td></tr></table>
-            <h3>6.4 Volume Bioflok (FV)</h3>
-            <p>FV optimal 10–20 mL/L (diukur Imhoff). FV &lt;5 mL/L : bioflok belum terbentuk; FV &gt;50 mL/L : terlalu padat, DO turun drastis.</p>
-            <div class="info-card"><strong>✅ Keunggulan Bioflok:</strong> Hemat air (ganti <5%/hari), hemat pakan 20-40%, imunostimulan alami.<br>
-            <strong>⚠️ Keterbatasan:</strong> Butuh aerasi kuat, manajemen C:N rumit, risiko DO drop. Spesies cocok: udang vaname, lele, nila, patin.</div>
-            <h4>📚 Sumber Referensi – Bioflok</h4>
-            <p>FAO (2014), Avnimelech (2007), KKP (2019).</p>
-            <div class="ringkasan">✨ <strong>Kesimpulan:</strong> Bioflok mengubah limbah nitrogen menjadi pakan protein tinggi, mengurangi kebutuhan pakan komersial hingga 40%.</div>
-        </div>
-    </div>
-
-    <!-- BAB 7 : MANAJEMEN AIR & LIMBAH -->
-    <div id="bab7" class="section">
-        <div class="section-header">
-            <h2>BAB 7: MANAJEMEN AIR & PENGELOLAAN LIMBAH</h2>
-        </div>
-        <div class="section-content">
-            <h3>7.1 Manajemen Kualitas Air</h3>
-            <p>Strategi berlapis: Pencegahan (lokasi bersih, karantina), Monitoring (DO setiap 4-6 jam, amonia 2x/minggu), Intervensi (jika DO&lt;4 mg/L aktifkan aerator, pH&lt;6,5 beri kapur).</p>
-            <h3>7.2 Pengelolaan Limbah Budidaya</h3>
-            <div class="info-card">Sumber limbah: 100% pakan → 20-30% diserap ikan, 20-30% feces, 30-40% amonia, 5-10% sisa pakan.</div>
-            <ul>
-                <li><strong>Settling Pond:</strong> kolam pengendap 24–72 jam, efisiensi TSS 60-80%.</li>
-                <li><strong>Constructed Wetland:</strong> tanaman air (Typha, Lemna) menyerap nitrat & fosfat (efisiensi TN 60-90%).</li>
-                <li><strong>Bioremediasi Mikroba:</strong> bakteri Nitrosomonas, Bacillus subtilis.</li>
-                <li><strong>Aquaponik:</strong> integrasi ikan + sayuran (kangkung, selada) sistem zero-waste.</li>
-            </ul>
-            <h4>📚 Sumber Referensi – Manajemen Air & Limbah</h4>
-            <p>FAO (2012), Piedrahita (2003), Boyd (2017), KKP-KLHK (2021).</p>
-        </div>
-    </div>
-
-    <!-- BAB 8 : EFISIENSI & TEKNOLOGI MODERN -->
-    <div id="bab8" class="section">
-        <div class="section-header">
-            <h2>BAB 8: EFISIENSI PRODUKSI & TEKNOLOGI MODERN</h2>
-        </div>
-        <div class="section-content">
-            <h3>8.1 Indikator Efisiensi Produksi</h3>
-            <table><tr><th>Indikator</th><th>Target Ideal</th></tr>
-            <tr><td>FCR</td><td>&lt;1,5 (ikan), &lt;1,3 (udang)</td></tr>
-            <tr><td>SGR (Specific Growth Rate)</td><td>&gt;2%/hari</td></tr>
-            <tr><td>SR (Survival Rate)</td><td>&gt;90% (ikan), &gt;80% (udang)</td></tr>
-            </table>
-            <h3>8.2 Teknologi Modern Akuakultur</h3>
-            <div class="info-card"><strong>🌐 Smart Aquaculture & IoT:</strong> Sensor DO, pH, suhu, kamera bawah air → gateway LoRaWAN → cloud dashboard + notifikasi alarm. Contoh Indonesia: JALA Tech, eFishery, Aruna.</div>
-            <div class="info-card"><strong>🤖 Kecerdasan Buatan (AI):</strong> Estimasi biomassa, deteksi dini penyakit, optimasi pemberian pakan, prediksi kualitas air.</div>
-            <div class="info-card"><strong>🧬 Genome Editing CRISPR-Cas9:</strong> Ikan tumbuh cepat (AquAdvantage Salmon), ikan resistan penyakit. Belum diizinkan di Indonesia. Program GIFT tilapia & lele unggul Sangkuriang.</div>
-            <div class="info-card"><strong>🌊 Offshore Aquaculture:</strong> Budidaya di laut terbuka &gt;3 mil, keramba submersible tahan gelombang. Contoh: Aquapod (AS), SalMar Ocean Farm 1 (Norwegia).</div>
-            <h4>📚 Sumber Referensi – Teknologi Modern</h4>
-            <p>FAO (2020), Føre et al. (2018), KKP (2023) Peta Jalan Digitalisasi.</p>
-        </div>
-    </div>
-
-    <!-- BAB 9 : TANTANGAN & SOLUSI -->
-    <div id="bab9" class="section">
-        <div class="section-header">
-            <h2>BAB 9: TANTANGAN INDUSTRI & SOLUSI MODERN</h2>
-        </div>
-        <div class="section-content">
-            <h3>9.1 Tantangan Utama</h3>
-            <table>
-                <tr><th>Tantangan</th><th>Dampak</th></tr>
-                <tr><td>Penyakit (WSSV, EMS, KHV)</td><td>Kerugian USD miliaran/tahun</td></tr>
-                <tr><td>Resistensi antibiotik (AMR)</td><td>Ancaman kesehatan</td></tr>
-                <tr><td>Perubahan iklim</td><td>Suhu naik, cuaca ekstrem</td></tr>
-                <tr><td>Ketersediaan tepung ikan</td><td>Harga pakan naik</td></tr>
-            </table>
-            <h3>9.2 Solusi Modern Komprehensif</h3>
-            <ul>
-                <li><strong>Penyakit:</strong> Vaksin DNA rekombinan, SPF broodstock (indukan bebas patogen), probiotik.</li>
-                <li><strong>AMR:</strong> Larangan antibiotik tertentu, bakteriofage, ekstrak tanaman, sertifikasi ASC.</li>
-                <li><strong>Perubahan iklim:</strong> RAS indoor, seleksi varietas tahan suhu tinggi, energi surya.</li>
-                <li><strong>Pakan alternatif:</strong> BSF (Black Soldier Fly) protein 40-50%, mikroalga Chlorella, sel kultur.</li>
-            </ul>
-            <h3>9.3 Studi Kasus Nyata</h3>
-            <div class="info-card"><strong>eFishery (Indonesia):</strong> Autofeeder pintar → FCR turun 20%, produktivitas +30%, valuasi &gt;USD 1 miliar, pengguna >50.000.</div>
-            <div class="info-card"><strong>Bioflok Situbondo:</strong> Luas 0,5 ha, padat tebar 400 ekor/m² udang vaname, produksi 35 ton/siklus, FCR 1,15, hemat air 95%.</div>
-            <div class="info-card"><strong>Atlantic Sapphire:</strong> RAS salmon terbesar, target 220.000 ton/tahun di Florida, tanpa emisi transportasi dari Norwegia.</div>
-            <div class="ringkasan"><strong>Rangkuman Master:</strong> Akuakultur modern memadukan prinsip ekologi, rekayasa, dan digitalisasi. Dari tradisional hingga supra-intensif (RAS/Bioflok), efisiensi air dan pakan menjadi kunci keberlanjutan.</div>
-        </div>
-    </div>
-
-    <!-- Master Referensi dan penutup -->
-    <div class="section">
-        <div class="section-header">
-            <h2>📚 MASTER REFERENSI AKADEMIK</h2>
-        </div>
-        <div class="section-content">
-            <table>
-                <tr><th>No</th><th>Kategori</th><th>Referensi Utama</th></tr>
-                <tr><td>1</td><td>FAO</td><td>SOFIA Report 2022; FAO Technical Papers No. 500, 550</td></tr>
-                <tr><td>2</td><td>Jurnal Internasional</td><td>Aquaculture (Elsevier); Reviews in Aquaculture</td></tr>
-                <tr><td>3</td><td>Buku Akademik</td><td>Pillay & Kutty (2005); Timmons & Ebeling (2013); Avnimelech (2009)</td></tr>
-                <tr><td>4</td><td>Universitas Indonesia</td><td>IPB University; UNAIR; UNDIP; UGM</td></tr>
-                <tr><td>5</td><td>Kementerian</td><td>KKP (DJPB); BRIN; KLHK</td></tr>
-            </table>
-            <div class="info-card" style="margin-top:1rem;">
-                🌊 <strong>Pohon Pengetahuan Dasar-Dasar Akuakultur</strong><br>
-                Definisi & Konsep → Sejarah → Prinsip Dasar (Carrying Capacity, Siklus N, Kualitas Air, Pakan, Biosekuriti) → Sistem Budidaya (Tradisional s/d Supra Intensif) → Teknologi RAS & Bioflok → Manajemen Air & Limbah → Efisiensi & Teknologi Modern (IoT, AI, Bioteknologi) → Tantangan & Solusi.
-            </div>
-        </div>
-    </div>
-    <footer>
-        <p>📖 Riset Akademik Lengkap — Dasar-Dasar Akuakultur | Sumber terverifikasi FAO, jurnal internasional, & kementerian | Platform Edukasi UNTUK JIHAN</p>
-    </footer>
+  <div class="wave-loading">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C200,0 400,80 600,40 C800,0 1000,80 1200,40 L1200,80 L0,80 Z" fill="rgba(56,189,248,0.15)" />
+    </svg>
+  </div>
 </div>
+
+<!-- ===================== STICKY BAR ===================== -->
+<div class="sticky-bar" id="sticky-bar">
+  <span class="site-brand">🌊 Akuakultur</span>
+  <div class="theme-switcher">
+    <button class="theme-btn klasik active" onclick="setTheme('klasik',this)">⬜ Klasik</button>
+    <button class="theme-btn hangat" onclick="setTheme('hangat',this)">🟠 Hangat</button>
+    <button class="theme-btn gelap" onclick="setTheme('gelap',this)">🌑 Gelap</button>
+  </div>
+  <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<!-- ===================== MAIN CONTENT ===================== -->
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>🌊 Dasar-Dasar Akuakultur</h1>
+    <div class="subtitle">Riset Akademik Lengkap &bull; Untuk Jihan</div>
+    <div class="tagline">🐟 Dari prinsip ilmiah hingga teknologi RAS &amp; Bioflok</div>
+    <div class="stats-grid" id="stats-animation">
+      <div class="stat-card"><span class="stat-number" data-target="57">0</span><span class="stat-label">% konsumsi ikan global dari akuakultur (2022)</span></div>
+      <div class="stat-card"><span class="stat-number" data-target="281">0</span><span class="stat-label">Miliar USD nilai produksi global</span></div>
+      <div class="stat-card"><span class="stat-number" data-target="2">0</span><span class="stat-label">Peringkat Indonesia sebagai produsen dunia</span></div>
+      <div class="stat-card"><span class="stat-number" data-target="600">0</span><span class="stat-label">+ Spesies dibudidayakan</span></div>
+    </div>
+  </div>
+
+  <!-- DAFTAR ISI -->
+  <div class="toc">
+    <h2>📑 Daftar Isi</h2>
+    <div class="toc-grid">
+      <a href="#bab1">📘 1. Definisi Akuakultur</a>
+      <a href="#bab2">📜 2. Sejarah Perkembangan</a>
+      <a href="#bab3">⚙️ 3. Prinsip Dasar Budidaya</a>
+      <a href="#bab4">🏞️ 4. Sistem Budidaya</a>
+      <a href="#bab5">🔄 5. Teknologi RAS</a>
+      <a href="#bab6">🧫 6. Teknologi Bioflok</a>
+      <a href="#bab7">💧 7. Manajemen Air &amp; Limbah</a>
+      <a href="#bab8">📊 8. Efisiensi &amp; Teknologi Modern</a>
+      <a href="#bab9">⚠️ 9. Tantangan &amp; Solusi</a>
+    </div>
+  </div>
+
+  <!-- BAB 1 -->
+  <div id="bab1" class="section">
+    <div class="section-header">
+      <h2>BAB 1: DEFINISI AKUAKULTUR</h2>
+      <p>Memahami apa itu akuakultur secara ilmiah &amp; perbedaannya dengan perikanan tangkap</p>
+    </div>
+    <div class="section-content">
+      <h3>1.1 Definisi Komprehensif</h3>
+      <div class="info-card">
+        <strong>📘 Definisi Utama (FAO, 2022):</strong><br>
+        Akuakultur (<em>aquaculture</em>) adalah pemeliharaan organisme akuatik — termasuk ikan, moluska, krustasea, tumbuhan air, dan alga — dalam lingkungan yang dikontrol, baik air tawar, air payau, maupun air laut, dengan tujuan menghasilkan produk untuk konsumsi manusia, perdagangan, restocking alam, atau tujuan ilmiah.
+      </div>
+      <div class="awam-note">Akuakultur itu seperti "berkebun" tapi di air. Bukan sekadar memancing, tapi benar-benar memelihara, memberi makan, dan merawat makhluk hidup air agar bisa dipanen secara teratur.</div>
+
+      <div class="info-card">
+        <strong>🔬 Definisi Teknis:</strong><br>
+        Akuakultur merupakan aplikasi prinsip-prinsip ilmu hayati, teknik, dan manajemen dalam sistem produksi biologis berbasis air, yang melibatkan intervensi manusia aktif dalam siklus hidup organisme target untuk meningkatkan produktivitas melampaui kapasitas alami ekosistem.
+      </div>
+
+      <div class="scientific-term">
+        <span class="term">Istilah Ilmiah →</span>
+        <span class="explain"><strong>Mariculture</strong> = budidaya di laut &nbsp;|&nbsp; <strong>Inland aquaculture</strong> = budidaya di perairan darat &nbsp;|&nbsp; <strong>Polyculture</strong> = memelihara beberapa spesies dalam satu lahan &nbsp;|&nbsp; <strong>Monoculture</strong> = satu spesies dominan</span>
+      </div>
+
+      <h4>📌 Perbedaan Akuakultur vs Penangkapan</h4>
+      <table>
+        <tr><th>Aspek</th><th>Penangkapan Ikan</th><th>Akuakultur</th></tr>
+        <tr><td>Sifat</td><td>Ekstraktif (mengambil dari alam)</td><td>Produktif (menghasilkan secara aktif)</td></tr>
+        <tr><td>Lokasi</td><td>Alam bebas (laut, sungai)</td><td>Lingkungan terkontrol</td></tr>
+        <tr><td>Sumber</td><td>Bergantung stok alam</td><td>Mandiri dari alam</td></tr>
+        <tr><td>Hasil</td><td>Fluktuatif, sulit diprediksi</td><td>Dapat diprediksi &amp; terencana</td></tr>
+      </table>
+
+      <div class="ringkasan">
+        <strong>✨ Inti Materi:</strong> Akuakultur bukan sekadar "memelihara ikan" — ini adalah ilmu multidisiplin yang memadukan biologi, kimia, teknik, ekonomi dan manajemen lingkungan. Produktivitas per hektar bisa 10–50× lebih tinggi dari perikanan tangkap.
+      </div>
+
+      <h4>📊 Fakta Penting</h4>
+      <ul>
+        <li>Akuakultur menyumbang <strong>57%</strong> dari total konsumsi ikan global pada 2022 (FAO, 2022).</li>
+        <li>Nilai produksi akuakultur global mencapai <strong>USD 281,5 miliar</strong> (2020).</li>
+        <li>Indonesia adalah produsen akuakultur terbesar ke-<strong>2</strong> di dunia setelah Tiongkok.</li>
+        <li>Lebih dari <strong>600 spesies</strong> dibudidayakan secara komersial di seluruh dunia.</li>
+      </ul>
+
+      <h4>📚 Sumber Referensi – Definisi</h4>
+      <table>
+        <tr><th>Kategori</th><th>Sumber</th></tr>
+        <tr><td>FAO</td><td>FAO. (2022). <em>The State of World Fisheries and Aquaculture (SOFIA)</em></td></tr>
+        <tr><td>Jurnal</td><td>Beveridge, M.C.M., et al. (2013). <em>Journal of Fish Biology</em>, 83(4), 1067–1084</td></tr>
+        <tr><td>Buku</td><td>Stickney, R.R. (2000). <em>Encyclopedia of Aquaculture</em>. John Wiley &amp; Sons</td></tr>
+        <tr><td>Kementerian</td><td>KKP. (2023). <em>Laporan Kinerja Ditjen Perikanan Budidaya</em></td></tr>
+      </table>
+      <div class="ringkasan">
+        ✅ <strong>Apa yang Perlu Dipahami:</strong> Akuakultur adalah sistem produksi terkontrol yang mendominasi pasokan ikan dunia, dengan kontribusi lebih dari separuh konsumsi ikan global.
+      </div>
+    </div>
+  </div>
+
+  <!-- BAB 2 -->
+  <div id="bab2" class="section">
+    <div class="section-header">
+      <h2>BAB 2: SEJARAH PERKEMBANGAN AKUAKULTUR</h2>
+      <p>Perjalanan panjang dari Tiongkok kuno hingga era digital</p>
+    </div>
+    <div class="section-content">
+      <h3>2.1 Linimasa Historis Global</h3>
+      <div class="awam-note">Akuakultur bukan penemuan baru! Manusia sudah memelihara ikan ribuan tahun sebelum masehi. Setiap zaman melahirkan teknik baru.</div>
+
+      <div class="info-card">
+        <strong>📅 ± 3500 SM — Tiongkok Kuno:</strong> Pemeliharaan ikan mas (<em>Cyprinus carpio</em>) di tambak lumpur. Risalah tertua: Fan Li's Fish Culture Classic (460 SM).<br><br>
+        <strong>🏺 ± 2000 SM — Mesir Kuno:</strong> Relief dinding makam menggambarkan kolam tilapia (<em>Oreochromis niloticus</em>) sebagai sumber protein pekerja piramida.<br><br>
+        <strong>⛪ Abad ke-13 — Eropa Medieval:</strong> Biara membangun vivarium (kolam ikan) untuk stok saat masa puasa.<br><br>
+        <strong>🇯🇵 Abad ke-17 — Jepang:</strong> Budidaya kerang mutiara (<em>Pinctada fucata</em>) tradisional.<br><br>
+        <strong>⚙️ Abad ke-19 — Revolusi Industri:</strong> 1853 riset pembenihan trout di Prancis; 1874 US Fish Commission lembaga akuakultur pertama.<br><br>
+        <strong>📡 Abad ke-20 — Era Modern:</strong> 1960-an intensifikasi, 1970-an pakan pellet, 1980-an udang intensif Asia, 1990-an krisis WSSV mendorong biosekuriti, 2000-an smart aquaculture.
+      </div>
+
+      <!-- Timeline visual sederhana -->
+      <h4>📈 Linimasa Singkat</h4>
+      <table>
+        <tr><th>Periode</th><th>Peristiwa Kunci</th></tr>
+        <tr><td>3500 SM</td><td>Tiongkok: pemeliharaan ikan mas pertama</td></tr>
+        <tr><td>2000 SM</td><td>Mesir: kolam tilapia untuk pekerja piramida</td></tr>
+        <tr><td>Abad 13</td><td>Eropa: biara bangun kolam vivarium</td></tr>
+        <tr><td>Abad 17</td><td>Jepang: budidaya mutiara tradisional</td></tr>
+        <tr><td>1853–1874</td><td>Revolusi Industri: riset pembenihan &amp; lembaga pertama</td></tr>
+        <tr><td>1960–2000</td><td>Intensifikasi, pakan pellet, krisis WSSV, biosekuriti</td></tr>
+        <tr><td>2000-kini</td><td>Smart aquaculture: IoT, AI, RAS, bioflok</td></tr>
+      </table>
+
+      <h4>🌏 2.2 Sejarah Akuakultur di Indonesia</h4>
+      <ul>
+        <li><strong>Kerajaan (Abad 8–16):</strong> Sistem tambak (<em>empang</em>) untuk bandeng di Jawa Tengah.</li>
+        <li><strong>Kolonial Belanda:</strong> VOC mencatat silvofishery; 1920 Balai Perikanan Darat Bogor; teknik mina padi.</li>
+        <li><strong>Kemerdekaan (1945–1980):</strong> Pembentukan Jawatan Perikanan Darat, PELITA I, ekspansi tambak udang.</li>
+        <li><strong>Intensifikasi (1980–2000):</strong> Ekspor udang beku; wabah WSSV 1994 → peralihan ke udang vaname.</li>
+        <li><strong>Modern (2000–sekarang):</strong> KKP berdiri 2001, program GEMARIKAN, produksi 17,2 juta ton (2023).</li>
+      </ul>
+      <div class="awam-note">Indonesia punya sejarah akuakultur yang panjang. Tambak bandeng sudah ada sejak zaman kerajaan. Dan setiap kali ada wabah penyakit, peternak Indonesia justru jadi lebih kreatif menemukan solusi baru.</div>
+
+      <div class="ringkasan">
+        <strong>📌 Inti Sejarah:</strong> Akuakultur berusia &gt;3500 tahun. Indonesia memiliki warisan kaya silvofishery, dan setiap krisis penyakit melahirkan inovasi teknologi baru (contoh: WSSV memicu adopsi udang vaname &amp; biosekuriti).
+      </div>
+      <h4>📖 Sumber Referensi – Sejarah</h4>
+      <table>
+        <tr><th>Kategori</th><th>Sumber</th></tr>
+        <tr><td>FAO</td><td>FAO. (2014). <em>Aquaculture: Global status and trends</em></td></tr>
+        <tr><td>Buku</td><td>Pillay, T.V.R. &amp; Kutty, M.N. (2005). <em>Aquaculture: Principles and Practices</em></td></tr>
+        <tr><td>Kementerian</td><td>KKP. (2022). <em>Sejarah Perikanan Budidaya Indonesia</em></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- BAB 3 -->
+  <div id="bab3" class="section">
+    <div class="section-header">
+      <h2>BAB 3: PRINSIP DASAR BUDIDAYA</h2>
+      <p>Lima pilar utama keberhasilan akuakultur</p>
+    </div>
+    <div class="section-content">
+      <h3>3.1 Lima Prinsip Fundamental</h3>
+      <div class="awam-note">Bayangkan lima aturan emas yang harus dipatuhi agar ikan bisa tumbuh sehat dan menguntungkan. Melanggar salah satu? Panen bisa gagal total.</div>
+
+      <div class="info-card">
+        <strong>Prinsip 1 — Carrying Capacity (Daya Dukung)</strong><br>
+        Kemampuan maksimum suatu sistem perairan mendukung biomassa tanpa degradasi permanen.<br>
+        <div class="formula-box">
+          CC = (DO_supply - DO_minimum) / (BO_ikan × N)<br>
+          <span style="font-size:0.8rem;">DO_supply = pasokan oksigen terlarut &nbsp;|&nbsp; DO_minimum = kebutuhan minimum ikan &nbsp;|&nbsp; BO_ikan = kebutuhan oksigen spesifik ikan &nbsp;|&nbsp; N = jumlah individu</span>
+        </div>
+        <div class="awam-note">Sederhananya: tiap kolam punya "batas daya tamping". Jika ikan terlalu padat, oksigen habis dan ikan mati massal. Formula ini membantu hitung batas aman kepadatan.</div>
+        Contoh: Ikan lele kolam konvensional 20–50 kg/m³; udang vaname tambak intensif 200–400 ekor/m².
+      </div>
+
+      <div class="info-card">
+        <strong>Prinsip 2 — Siklus Biogeokimia (Siklus Nitrogen)</strong>
+        <div class="flow-diagram">
+          Pakan Protein → Amonia (NH₃ TOKSIK) → Bakteri <em>Nitrosomonas</em> → Nitrit (NO₂⁻ SANGAT TOKSIK) → Bakteri <em>Nitrobacter</em> → Nitrat (NO₃⁻ relatif aman) → Denitrifikasi → Gas N₂ keluar atmosfer
+        </div>
+        <div class="awam-note">Ikan makan pakan → kotoran ikan mengandung racun amonia. Untungnya ada "pasukan bakteri baik" di air yang memproses racun itu menjadi nitrat yang aman, dan akhirnya menjadi gas yang lepas ke udara.</div>
+      </div>
+
+      <div class="info-card">
+        <strong>Prinsip 3 — Homeostasis Kualitas Air</strong><br>
+        Parameter kritis yang harus dijaga setiap hari:
+        <table>
+          <tr><th>Parameter</th><th>Nilai Optimal</th><th>Nilai Kritis (Bahaya)</th></tr>
+          <tr><td>Suhu</td><td>26–30°C</td><td>&lt;15°C atau &gt;35°C</td></tr>
+          <tr><td>DO (Oksigen Terlarut)</td><td>&gt;5 mg/L</td><td>&lt;3 mg/L (ikan sekarat)</td></tr>
+          <tr><td>Amonia Total</td><td>&lt;1 mg/L</td><td>&gt;3 mg/L (racun)</td></tr>
+          <tr><td>Nitrit</td><td>&lt;0,1 mg/L</td><td>&gt;0,5 mg/L (bahaya)</td></tr>
+        </table>
+        <div class="awam-note">Air kolam harus "hidup" dengan kondisi yang stabil. Sama seperti manusia butuh udara bersih dan suhu nyaman, ikan pun butuh air yang bersih dan suhunya pas.</div>
+      </div>
+
+      <div class="info-card">
+        <strong>Prinsip 4 — Manajemen Pakan (FCR)</strong><br>
+        <div class="formula-box">FCR = Total Pakan Diberikan (kg) / Total Pertambahan Biomassa (kg)</div>
+        <div class="awam-note">FCR (Feed Conversion Ratio) = ukuran efisiensi pakan. FCR 1,2 artinya: butuh 1,2 kg pakan untuk menghasilkan 1 kg daging ikan. Makin kecil angkanya, makin hemat dan untung!</div>
+        FCR ideal: Lele 0,8–1,2; Nila 1,5–2,0; Udang vaname 1,2–1,6. Semakin kecil FCR semakin efisien.
+      </div>
+
+      <div class="info-card">
+        <strong>Prinsip 5 — Biosekuriti &amp; Kesehatan</strong><br>
+        Sistem pertahanan berlapis agar penyakit tidak masuk dan menyebar:
+        <ul style="margin-top:0.5rem;">
+          <li><strong>Level 1 – Eksklusi:</strong> Cegah patogen masuk (karantina benih, desinfeksi peralatan).</li>
+          <li><strong>Level 2 – Kompartementalisasi:</strong> Cegah penyebaran antar-kolam/zona jika ada penyakit.</li>
+          <li><strong>Level 3 – Eliminasi:</strong> Eradikasi patogen jika sudah masuk (disinfeksi menyeluruh, pemanenan darurat).</li>
+        </ul>
+        <div class="awam-note">Seperti protokol kesehatan pada manusia: cegah dulu (masker), pisahkan yang sakit (karantina), dan sembuhkan (obat). Bedanya ini untuk ikan!</div>
+      </div>
+
+      <div class="ringkasan"><strong>Kesimpulan Singkat:</strong> Lima prinsip ini — daya dukung, siklus nitrogen, kualitas air, efisiensi pakan, dan biosekuriti — menjadi fondasi teknis budidaya berkelanjutan.</div>
+      <h4>📚 Sumber Referensi – Prinsip Dasar</h4>
+      <table>
+        <tr><th>Penulis/Lembaga</th><th>Karya</th></tr>
+        <tr><td>FAO (2010)</td><td>Good aquaculture practices</td></tr>
+        <tr><td>Boyd &amp; Tucker (2012)</td><td>Aquaculture, 370–371</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- BAB 4 -->
+  <div id="bab4" class="section">
+    <div class="section-header">
+      <h2>BAB 4: SISTEM BUDIDAYA — DARI TRADISIONAL KE SUPRA INTENSIF</h2>
+      <p>Empat tingkatan sistem budidaya dengan input dan output berbeda</p>
+    </div>
+    <div class="section-content">
+      <div class="awam-note">Bayangkan empat "kelas" budidaya ikan: dari yang sederhana seperti tambak tradisional, hingga yang super canggih seperti pabrik ikan berteknologi tinggi.</div>
+
+      <!-- Tabel perbandingan ringkas -->
+      <table>
+        <tr><th>Sistem</th><th>Kepadatan</th><th>Produksi</th><th>Teknologi</th><th>Contoh</th></tr>
+        <tr><td><strong>Ekstensif</strong></td><td>1–5 ekor/m²</td><td>500–2.000 kg/ha/thn</td><td>Minimal, pakan alami</td><td>Empang bandeng, mina padi</td></tr>
+        <tr><td><strong>Semi-Intensif</strong></td><td>5–25 ekor/m²</td><td>Sedang</td><td>Kincir air, 50% pakan buatan</td><td>Tambak udang vaname Jatim</td></tr>
+        <tr><td><strong>Intensif</strong></td><td>25–300 ekor/m²</td><td>Tinggi</td><td>Aerasi besar, pakan formulasi</td><td>PTDI Probolinggo, KJA kerapu</td></tr>
+        <tr><td><strong>Supra-Intensif</strong></td><td>&gt;300 ekor/m²</td><td>Sangat tinggi</td><td>RAS / Bioflok</td><td>Udang vaname 600–1000 ekor/m²</td></tr>
+      </table>
+
+      <h3>4.1 Sistem Tradisional (Ekstensif)</h3>
+      <p>Padat tebar 1–5 ekor/m², produksi 500–2.000 kg/ha/tahun, mengandalkan pakan alami, tanpa aerasi. Contoh di Indonesia: Empang bandeng, mina padi, silvofishery. Keunggulan: ramah lingkungan, cocok pemberdayaan masyarakat. Keterbatasan: produktivitas rendah.</p>
+
+      <h3>4.2 Sistem Semi-Intensif</h3>
+      <p>Padat tebar 5–25 ekor/m², aerasi kincir air (1–2 HP/ha), FCR 1,5–3,0. Menggunakan 50% pakan alami + buatan. Contoh tambak udang vaname semi-intensif di Jawa Timur.</p>
+
+      <div class="info-card"><strong>Perbandingan Ekstensif vs Semi-Intensif</strong><br>
+        Pakan: 100% alami → 50% alami+buatan. &nbsp;|&nbsp; Aerasi: tidak ada → kincir air. &nbsp;|&nbsp; Monitoring: jarang → mingguan.
+      </div>
+
+      <h3>4.3 Sistem Intensif</h3>
+      <p>Padat tebar 25–100 ekor/m² (ikan), 100–300 ekor/m² (udang), FCR 1,0–2,0, aerasi 10-20 HP/ha, pergantian air 30–100%/hari. Contoh tambak udang vaname intensif PTDI (Probolinggo) dan KJA kerapu di Lampung.</p>
+
+      <h3>4.4 Sistem Supra-Intensif</h3>
+      <p>Kepadatan ekstrem, teknologi RAS atau bioflok. Padat tebar &gt;300 ekor/m² udang, &gt;100 kg/m³ ikan dalam RAS, FCR 0,8-1,5, pergantian air &lt;10% per hari. Contoh: Udang vaname 600–1000 ekor/m², lele RAS 100–200 kg/m³.</p>
+
+      <div class="ringkasan"><strong>Inti Materi:</strong> Sistem tradisional minim input, semi-intensif transisi, intensif padat modal, supra-intensif butuh teknologi canggih (RAS/bioflok) untuk produktivitas ekstrim.</div>
+      <h4>📚 Sumber Referensi – Sistem Budidaya</h4>
+      <p>FAO (2015), Wasielesky et al. (2006), Tidwell (2012), KKP (2021).</p>
+    </div>
+  </div>
+
+  <!-- BAB 5 -->
+  <div id="bab5" class="section">
+    <div class="section-header">
+      <h2>BAB 5: TEKNOLOGI RAS (RECIRCULATING AQUACULTURE SYSTEM)</h2>
+      <p>Sistem budidaya tertutup paling canggih dengan daur ulang air hingga 99%</p>
+    </div>
+    <div class="section-content">
+      <h3>5.1 Definisi &amp; Konsep Dasar RAS</h3>
+      <p>Sistem budidaya tertutup yang mendaur ulang air 95–99% dengan filter mekanik, biofilter, aerasi, desinfeksi.</p>
+      <div class="awam-note">RAS itu seperti "akuarium super canggih" yang airnya tidak dibuang, tapi dibersihkan terus-menerus dan dipakai ulang. Bayangkan mesin cuci yang airnya bisa dipake berkali-kali!</div>
+
+      <div class="flow-diagram">
+        Kolam Ikan → Drum Filter (padatan) → Biofilter MBBR (ubah amonia → nitrat) → Degasser (buang CO₂) → UV/Ozon → Oksigenasi → Kembali ke kolam
+      </div>
+
+      <h3>5.2 Komponen Teknis RAS</h3>
+      <table>
+        <tr><th>Komponen</th><th>Fungsi</th><th>Spesifikasi Teknis</th></tr>
+        <tr><td><strong>MBBR</strong> (Moving Bed Biofilm Reactor)</td><td>Media plastik dengan bakteri <em>Nitrosomonas</em> &amp; <em>Nitrobacter</em> mengoksidasi amonia menjadi nitrat</td><td>Kapasitas 0,5–1,5 g NH₃-N/m²/hari</td></tr>
+        <tr><td><strong>Drum Filter</strong></td><td>Menyaring padatan tersuspensi</td><td>60–200 mikron</td></tr>
+        <tr><td><strong>UV Sterilizer</strong></td><td>Merusak DNA patogen</td><td>Dosis 25–40 mJ/cm²</td></tr>
+        <tr><td><strong>Ozonasi</strong></td><td>Membunuh patogen &amp; menghilangkan warna</td><td>0,01–0,1 mg/L</td></tr>
+      </table>
+
+      <div class="info-card">
+        <strong>✅ Keunggulan RAS:</strong> Hemat air 95–99%, kontrol penuh lingkungan, bisa dibangun di mana saja (bahkan di gurun!).<br><br>
+        <strong>⚠️ Keterbatasan:</strong> Investasi sangat tinggi, risiko mati listrik fatal, butuh operator ahli.<br><br>
+        <strong>🌍 Contoh Global:</strong> Atlantic Sapphire (220.000 ton/tahun). <strong>🇮🇩 Contoh Indonesia:</strong> BRPBAT Bogor, PT Biru Laut Nusantara.
+      </div>
+      <h4>📚 Sumber Referensi RAS</h4>
+      <p>Martins et al. (2010), Timmons &amp; Ebeling (2013), KKP-BRIN (2022).</p>
+    </div>
+  </div>
+
+  <!-- BAB 6 -->
+  <div id="bab6" class="section">
+    <div class="section-header">
+      <h2>BAB 6: TEKNOLOGI BIOFLOK</h2>
+      <p>Sistem hemat air &amp; pakan dengan bantuan mikroba</p>
+    </div>
+    <div class="section-content">
+      <h3>6.1 Konsep &amp; Sejarah Bioflok</h3>
+      <div class="info-card">Bioflok adalah agregat mikroskopis (0,1–1 mm) dari bakteri heterotrof, alga, protozoa, partikel organik — berfungsi sebagai pakan in situ dan filter biologis. Dikembangkan oleh Prof. Yoram Avnimelech (Israel) sejak 1970-an, diadopsi massal untuk budidaya udang vaname.</div>
+      <div class="awam-note">Bioflok itu seperti "gumpalan ajaib" yang terbentuk di air kolam. Gumpalan ini terdiri dari jutaan bakteri baik dan sisa organik yang kemudian dimakan kembali oleh ikan/udang sebagai makanan tambahan gratis!</div>
+
+      <h3>6.2 Mekanisme Pembentukan Bioflok</h3>
+      <p>Syarat: aerasi kuat (&gt;15 cm/detik), rasio C:N = 15:1 – 20:1 (tambahkan molase/tapioka), alkalinitas &gt;100 mg/L.</p>
+      <div class="flow-diagram">
+        Amonia + Sumber Karbon (molase) → Bakteri heterotrof asimilasi nitrogen → Sekresi EPS (lem alami) → Bioflok terbentuk → Dimakan udang/ikan sebagai sumber protein 25–40%
+      </div>
+      <div class="formula-box">NH₄⁺ + 1,18C₆H₁₂O₆ + HCO₃⁻ + 2,06O₂ → Biomassa bakteri + H₂O + CO₂</div>
+
+      <h3>6.3 Komposisi Nutrisi Bioflok</h3>
+      <table>
+        <tr><th>Komponen</th><th>% Bobot Kering</th><th>Manfaat untuk Ikan/Udang</th></tr>
+        <tr><td>Protein kasar</td><td>25–40%</td><td>Pertumbuhan otot dan jaringan</td></tr>
+        <tr><td>Lemak kasar</td><td>0,5–3,5%</td><td>Sumber energi cadangan</td></tr>
+        <tr><td>Karbohidrat</td><td>15–30%</td><td>Energi aktivitas sehari-hari</td></tr>
+      </table>
+
+      <h3>6.4 Volume Bioflok (FV)</h3>
+      <p>FV optimal 10–20 mL/L (diukur Imhoff). FV &lt;5 mL/L : bioflok belum terbentuk; FV &gt;50 mL/L : terlalu padat, DO turun drastis.</p>
+      <div class="awam-note">Volume bioflok diukur seperti cek endapan di gelas. Jika terlalu sedikit, belum ada manfaat. Jika terlalu banyak, air jadi seperti lumpur dan oksigen habis.</div>
+
+      <div class="info-card">
+        <strong>✅ Keunggulan Bioflok:</strong> Hemat air (ganti &lt;5%/hari), hemat pakan 20-40%, imunostimulan alami.<br>
+        <strong>⚠️ Keterbatasan:</strong> Butuh aerasi kuat, manajemen C:N rumit, risiko DO drop.<br>
+        <strong>🐟 Spesies cocok:</strong> Udang vaname, lele, nila, patin.
+      </div>
+      <h4>📚 Sumber Referensi – Bioflok</h4>
+      <p>FAO (2014), Avnimelech (2007), KKP (2019).</p>
+      <div class="ringkasan">✨ <strong>Kesimpulan:</strong> Bioflok mengubah limbah nitrogen menjadi pakan protein tinggi, mengurangi kebutuhan pakan komersial hingga 40%.</div>
+    </div>
+  </div>
+
+  <!-- BAB 7 -->
+  <div id="bab7" class="section">
+    <div class="section-header">
+      <h2>BAB 7: MANAJEMEN AIR &amp; PENGELOLAAN LIMBAH</h2>
+      <p>Strategi menjaga kualitas air dan mengelola buangan budidaya secara berkelanjutan</p>
+    </div>
+    <div class="section-content">
+      <h3>7.1 Manajemen Kualitas Air</h3>
+      <p>Strategi berlapis yang harus diterapkan setiap hari:</p>
+      <ul>
+        <li><strong>Pencegahan:</strong> Lokasi bersih, karantina benih sebelum ditebar.</li>
+        <li><strong>Monitoring:</strong> DO setiap 4-6 jam, amonia 2×/minggu.</li>
+        <li><strong>Intervensi:</strong> Jika DO &lt;4 mg/L aktifkan aerator; jika pH &lt;6,5 beri kapur.</li>
+      </ul>
+      <div class="awam-note">Manajemen air itu seperti merawat "rumah" ikan. Harus rutin dicek dan dibersihkan. Tidak bisa dibiarkan begitu saja!</div>
+
+      <h3>7.2 Pengelolaan Limbah Budidaya</h3>
+      <div class="info-card">
+        <strong>Nasib 100% pakan yang diberikan:</strong><br>
+        20–30% diserap menjadi daging ikan &nbsp;|&nbsp; 20–30% dibuang sebagai feces &nbsp;|&nbsp; 30–40% terbuang sebagai amonia &nbsp;|&nbsp; 5–10% sisa pakan tidak termakan
+      </div>
+
+      <table>
+        <tr><th>Metode Pengolahan Limbah</th><th>Cara Kerja</th><th>Efisiensi</th></tr>
+        <tr><td><strong>Settling Pond</strong></td><td>Kolam pengendap, didiamkan 24–72 jam</td><td>TSS 60-80%</td></tr>
+        <tr><td><strong>Constructed Wetland</strong></td><td>Tanaman air (<em>Typha, Lemna</em>) menyerap nitrat &amp; fosfat</td><td>TN 60-90%</td></tr>
+        <tr><td><strong>Bioremediasi Mikroba</strong></td><td>Bakteri <em>Nitrosomonas, Bacillus subtilis</em> mengurai limbah</td><td>Efektif untuk amonia</td></tr>
+        <tr><td><strong>Aquaponik</strong></td><td>Integrasi ikan + sayuran (kangkung, selada) — sistem zero-waste</td><td>Hampir 100% daur ulang</td></tr>
+      </table>
+
+      <div class="awam-note">Aquaponik adalah solusi paling cerdas: air limbah ikan jadi pupuk sayuran, sayuran membersihkan air untuk ikan. Win-win!</div>
+
+      <h4>📚 Sumber Referensi – Manajemen Air &amp; Limbah</h4>
+      <p>FAO (2012), Piedrahita (2003), Boyd (2017), KKP-KLHK (2021).</p>
+    </div>
+  </div>
+
+  <!-- BAB 8 -->
+  <div id="bab8" class="section">
+    <div class="section-header">
+      <h2>BAB 8: EFISIENSI PRODUKSI &amp; TEKNOLOGI MODERN</h2>
+      <p>Indikator kinerja dan inovasi teknologi masa depan akuakultur</p>
+    </div>
+    <div class="section-content">
+      <h3>8.1 Indikator Efisiensi Produksi</h3>
+      <div class="awam-note">Tiga angka penting yang selalu dipantau peternak profesional untuk mengukur apakah bisnis berjalan baik atau tidak.</div>
+      <table>
+        <tr><th>Indikator</th><th>Kepanjangan</th><th>Target Ideal</th><th>Arti Sederhana</th></tr>
+        <tr><td><strong>FCR</strong></td><td>Feed Conversion Ratio</td><td>&lt;1,5 (ikan), &lt;1,3 (udang)</td><td>Makin kecil = makin hemat pakan</td></tr>
+        <tr><td><strong>SGR</strong></td><td>Specific Growth Rate</td><td>&gt;2%/hari</td><td>Kecepatan pertumbuhan harian</td></tr>
+        <tr><td><strong>SR</strong></td><td>Survival Rate</td><td>&gt;90% (ikan), &gt;80% (udang)</td><td>Persentase ikan yang bertahan hidup</td></tr>
+      </table>
+
+      <h3>8.2 Teknologi Modern Akuakultur</h3>
+      <div class="info-card">
+        <strong>🌐 Smart Aquaculture &amp; IoT:</strong> Sensor DO, pH, suhu, kamera bawah air → gateway LoRaWAN → cloud dashboard + notifikasi alarm. Contoh Indonesia: JALA Tech, eFishery, Aruna.
+        <div class="awam-note">Seperti punya "dokter jaga" otomatis 24 jam untuk kolam ikan. Kalau ada yang aneh, langsung kirim notifikasi ke HP peternak.</div>
+      </div>
+      <div class="info-card">
+        <strong>🤖 Kecerdasan Buatan (AI):</strong> Estimasi biomassa, deteksi dini penyakit, optimasi pemberian pakan, prediksi kualitas air.
+        <div class="awam-note">AI bisa memprediksi kapan ikan siap panen, mendeteksi tanda-tanda penyakit sebelum terlihat, dan otomatis mengatur jumlah pakan yang tepat.</div>
+      </div>
+      <div class="info-card">
+        <strong>🧬 Genome Editing CRISPR-Cas9:</strong> Ikan tumbuh cepat (AquAdvantage Salmon), ikan resistan penyakit. Belum diizinkan di Indonesia. Program GIFT tilapia &amp; lele unggul Sangkuriang.
+        <div class="awam-note">Rekayasa genetika memungkinkan ikan tumbuh 2× lebih cepat. Di Indonesia masih dalam tahap penelitian.</div>
+      </div>
+      <div class="info-card">
+        <strong>🌊 Offshore Aquaculture:</strong> Budidaya di laut terbuka &gt;3 mil, keramba submersible tahan gelombang. Contoh: Aquapod (AS), SalMar Ocean Farm 1 (Norwegia).
+        <div class="awam-note">Keramba terapung di tengah laut bebas terbatas lahan pantai dan polusi. Masa depan budidaya laut berskala besar.</div>
+      </div>
+
+      <h4>📚 Sumber Referensi – Teknologi Modern</h4>
+      <p>FAO (2020), Føre et al. (2018), KKP (2023) Peta Jalan Digitalisasi.</p>
+    </div>
+  </div>
+
+  <!-- BAB 9 -->
+  <div id="bab9" class="section">
+    <div class="section-header">
+      <h2>BAB 9: TANTANGAN INDUSTRI &amp; SOLUSI MODERN</h2>
+      <p>Hambatan nyata industri akuakultur dan cara mengatasinya</p>
+    </div>
+    <div class="section-content">
+      <h3>9.1 Tantangan Utama</h3>
+      <div class="awam-note">Industri akuakultur tidak bebas masalah. Ada empat ancaman besar yang terus mengintai.</div>
+      <table>
+        <tr><th>Tantangan</th><th>Dampak</th></tr>
+        <tr><td>Penyakit (WSSV, EMS, KHV)</td><td>Kerugian USD miliaran/tahun secara global</td></tr>
+        <tr><td>Resistensi antibiotik (AMR)</td><td>Ancaman kesehatan manusia dan hewan</td></tr>
+        <tr><td>Perubahan iklim</td><td>Suhu naik, cuaca ekstrem, stres ikan meningkat</td></tr>
+        <tr><td>Ketersediaan tepung ikan</td><td>Harga pakan melonjak, laut tereksploitasi</td></tr>
+      </table>
+
+      <h3>9.2 Solusi Modern Komprehensif</h3>
+      <ul>
+        <li><strong>Penyakit:</strong> Vaksin DNA rekombinan, SPF broodstock (indukan bebas patogen), probiotik.</li>
+        <li><strong>AMR:</strong> Larangan antibiotik tertentu, bakteriofage, ekstrak tanaman, sertifikasi ASC.</li>
+        <li><strong>Perubahan iklim:</strong> RAS indoor, seleksi varietas tahan suhu tinggi, energi surya.</li>
+        <li><strong>Pakan alternatif:</strong> BSF (Black Soldier Fly) protein 40-50%, mikroalga Chlorella, sel kultur.</li>
+      </ul>
+
+      <h3>9.3 Studi Kasus Nyata</h3>
+      <div class="info-card">
+        <strong>eFishery (Indonesia):</strong> Autofeeder pintar → FCR turun 20%, produktivitas +30%, valuasi &gt;USD 1 miliar, pengguna &gt;50.000.
+        <div class="awam-note">Startup Indonesia yang bikin alat pemberi pakan otomatis. Mesin ini tahu persis kapan dan berapa banyak pakan yang dibutuhkan ikan, tanpa perlu tenaga manusia terus-menerus.</div>
+      </div>
+      <div class="info-card">
+        <strong>Bioflok Situbondo:</strong> Luas 0,5 ha, padat tebar 400 ekor/m² udang vaname, produksi 35 ton/siklus, FCR 1,15, hemat air 95%.
+        <div class="awam-note">Bukti nyata di Indonesia: teknologi bioflok bisa menghasilkan panen luar biasa di lahan kecil dengan air yang jauh lebih hemat.</div>
+      </div>
+      <div class="info-card">
+        <strong>Atlantic Sapphire:</strong> RAS salmon terbesar, target 220.000 ton/tahun di Florida, tanpa emisi transportasi dari Norwegia.
+        <div class="awam-note">Bayangkan "pabrik salmon" di daratan Amerika yang produksinya sebesar seluruh lautan. RAS memungkinkan ini!</div>
+      </div>
+
+      <div class="ringkasan">
+        <strong>Rangkuman Master:</strong> Akuakultur modern memadukan prinsip ekologi, rekayasa, dan digitalisasi. Dari tradisional hingga supra-intensif (RAS/Bioflok), efisiensi air dan pakan menjadi kunci keberlanjutan.
+      </div>
+    </div>
+  </div>
+
+  <!-- REFERENSI -->
+  <div class="section">
+    <div class="section-header">
+      <h2>📚 MASTER REFERENSI AKADEMIK</h2>
+      <p>Seluruh sumber yang mendasari materi ini</p>
+    </div>
+    <div class="section-content">
+      <table>
+        <tr><th>No</th><th>Kategori</th><th>Referensi Utama</th></tr>
+        <tr><td>1</td><td>FAO</td><td>SOFIA Report 2022; FAO Technical Papers No. 500, 550</td></tr>
+        <tr><td>2</td><td>Jurnal Internasional</td><td>Aquaculture (Elsevier); Reviews in Aquaculture</td></tr>
+        <tr><td>3</td><td>Buku Akademik</td><td>Pillay &amp; Kutty (2005); Timmons &amp; Ebeling (2013); Avnimelech (2009)</td></tr>
+        <tr><td>4</td><td>Universitas Indonesia</td><td>IPB University; UNAIR; UNDIP; UGM</td></tr>
+        <tr><td>5</td><td>Kementerian</td><td>KKP (DJPB); BRIN; KLHK</td></tr>
+      </table>
+      <div class="info-card" style="margin-top:1rem;">
+        🌊 <strong>Pohon Pengetahuan Dasar-Dasar Akuakultur</strong><br><br>
+        Definisi &amp; Konsep → Sejarah → Prinsip Dasar (Carrying Capacity, Siklus N, Kualitas Air, Pakan, Biosekuriti) → Sistem Budidaya (Tradisional s/d Supra Intensif) → Teknologi RAS &amp; Bioflok → Manajemen Air &amp; Limbah → Efisiensi &amp; Teknologi Modern (IoT, AI, Bioteknologi) → Tantangan &amp; Solusi
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>📖 Riset Akademik Lengkap — Dasar-Dasar Akuakultur &nbsp;|&nbsp; Sumber terverifikasi FAO, jurnal internasional, &amp; kementerian &nbsp;|&nbsp; Platform Edukasi UNTUK JIHAN 🐟</p>
+  </footer>
+</div>
+
+<!-- Back to top -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Kembali ke atas">↑</button>
+
 <script>
-    // animasi count-up sederhana untuk angka statistik
-    const counters = document.querySelectorAll('.stat-number[data-target]');
-    const animateNumber = (el) => {
-        const target = parseInt(el.getAttribute('data-target'), 10);
-        let current = 0;
-        const step = Math.ceil(target / 30);
-        const update = () => {
-            current += step;
-            if (current >= target) {
-                el.innerText = target;
-                return;
-            }
-            el.innerText = current;
-            requestAnimationFrame(update);
-        };
-        update();
-    };
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateNumber(entry.target);
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.3 });
-    counters.forEach(c => observer.observe(c));
+// ===================== LOADING SCREEN =====================
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var ls = document.getElementById('loading-screen');
+    if (ls) ls.classList.add('fade-out');
+    setTimeout(function() { if (ls) ls.remove(); }, 700);
+  }, 2400);
+});
+
+// ===================== THEME SWITCHER =====================
+function setTheme(theme, btn) {
+  document.documentElement.setAttribute('data-theme', theme === 'klasik' ? '' : theme);
+  document.querySelectorAll('.theme-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  localStorage.setItem('aq-theme', theme);
+}
+
+// Restore theme
+(function() {
+  var saved = localStorage.getItem('aq-theme') || 'klasik';
+  var btn = document.querySelector('.theme-btn.' + saved);
+  if (saved !== 'klasik') document.documentElement.setAttribute('data-theme', saved);
+  if (btn) { document.querySelectorAll('.theme-btn').forEach(function(b){b.classList.remove('active');}); btn.classList.add('active'); }
+})();
+
+// ===================== PROGRESS BAR =====================
+window.addEventListener('scroll', function() {
+  var docH = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var pct = (window.scrollY / docH * 100).toFixed(1);
+  document.getElementById('progress-bar').style.width = pct + '%';
+  var bt = document.getElementById('back-top');
+  if (window.scrollY > 300) bt.classList.add('show'); else bt.classList.remove('show');
+});
+
+// ===================== COUNT-UP ANIMATION =====================
+var counters = document.querySelectorAll('.stat-number[data-target]');
+function animateNumber(el) {
+  var target = parseInt(el.getAttribute('data-target'), 10);
+  var current = 0;
+  var step = Math.ceil(target / 35);
+  function update() {
+    current += step;
+    if (current >= target) { el.innerText = target; return; }
+    el.innerText = current;
+    requestAnimationFrame(update);
+  }
+  update();
+}
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) { animateNumber(entry.target); obs.unobserve(entry.target); }
+  });
+}, { threshold: 0.4 });
+counters.forEach(function(c) { obs.observe(c); });
 </script>
 </body>
 </html>
